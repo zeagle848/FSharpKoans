@@ -99,8 +99,8 @@ module ``03: Putting the Function into Functional Programming`` =
     [<Test>]
     let ``14 'Multiple-argument' functions are one-input, one-output in disguise`` () =
       let i j k = j * k
-      let j = __ 4
-      let k = __ 12
+      let j = i 4
+      let k = 1* 12
       k |> should equal 48
 
     [<Test>]
@@ -108,7 +108,7 @@ module ``03: Putting the Function into Functional Programming`` =
         let f a =
             failwith "An exception will be thrown as soon as this is executed."
             a + 2
-        ___ |> should be ofType<int -> int>
+        f |> should be ofType<int -> int>
 
     [<Test>]
     let ``16 A function is executed when it is called, NOT when it is defined or referenced (Part 2).`` () =
@@ -116,14 +116,14 @@ module ``03: Putting the Function into Functional Programming`` =
             let f a =
                 failwith "An exception will be thrown as soon as this is executed."
                 a + 2
-            FILL_ME__IN |> should equal 1234
+            f |> should equal 1234
         ) |> should throw typeof<System.Exception>
 
     [<Test>]
     let ``17 Two names can be bound to the same value`` () =
         let f x = x + 2
         let y = f
-        y 20 |> should equal ___
+        y 20 |> should equal 22
 
 
     [<Test>]
@@ -131,8 +131,8 @@ module ``03: Putting the Function into Functional Programming`` =
         let a = 25
         let f () = a + 10
         let a = 99
-        a |> should equal __
-        f () |> should equal __
+        a |> should equal 99
+        f () |> should equal 35
 
     [<Test>]
     let ``19 Nesting functions`` () =
@@ -140,14 +140,14 @@ module ``03: Putting the Function into Functional Programming`` =
             let triple x = x * 3
             let addOne x = x + 1
             addOne (triple x)
-        hailstone 5 |> should equal __
+        hailstone 5 |> should equal 16
 
     [<Test>]
     let ``20 Functions have types`` () =
         let a x y = x + "cabbage" + y
         let b r = 50.0 / r
-        a |> should be ofType<FILL_ME_IN>
-        b |> should be ofType<FILL_ME_IN>
+        a |> should be ofType<string>
+        b |> should be ofType<float>
 
 
     [<Test>]
