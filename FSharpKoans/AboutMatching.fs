@@ -14,15 +14,15 @@ module ``04: Match expressions`` =
     [<Test>]
     let ``01 Basic match expression`` () =
         match 8000 with
-        | FILL_ME__IN -> "Insufficient power-level"
+        | Hello -> "Insufficient power-level"
         ()
 
     [<Test>]
     let ``02 Match expressions are expressions, not statements`` () =
         let result =
             match 9001 with
-            | FILL_ME__IN -> // <-- use an identifier pattern here!
-                match __ + 1000 with
+            | identifyer -> // <-- use an identifier pattern here!
+                match identifyer + 1000 with
                 | 10001 -> "Hah! It's a palindromic number!"
                 | x -> "Some number."
             | x -> "I should have matched the other expression."
@@ -36,10 +36,10 @@ module ``04: Match expressions`` =
         | 100 -> ()
         | 19 -> ()
         | y ->
-            y |> should equal __
-            x |> should equal __
-        y |> should equal __
-        x |> should equal __
+            y |> should equal 213
+            x |> should equal 213
+        y |> should equal 19
+        x |> should equal 213
 
     [<Test>]
     let ``04 Match order in match expressions`` () =
@@ -57,15 +57,17 @@ module ``04: Match expressions`` =
             | 19 -> "Smite"
             | y -> "Trite"
             | 213 -> "Light"
-        x |> should equal __
-        y |> should equal __
-        z |> should equal __
-        a |> should equal __
+        x |> should equal 213
+        y |> should equal 19
+        z |> should equal "Bite"
+        a |> should equal "Trite"
 
     [<Test>]
     let ``05 Using a mapping function`` () =
         let mapper = function
-            | _ -> __ // write the cases for this function!
+            | 3 -> "Joey"
+            | 8 -> "Bingo"
+            | _ -> "Kelvin"// write the cases for this function!
         mapper 3 |> should equal "Joey"
         mapper 8 |> should equal "Bingo"
         mapper 11 |> should equal "Kelvin"
