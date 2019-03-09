@@ -24,10 +24,10 @@ module ``05: To iterate is human; to recurse, divine`` =
         let myfun n =
             let sq = n*n
             let v = sq*sq*sq*sq
-            let rec inner count =
+            let rec inner count stkCnt=
                 match count = v with
-                | true -> 0
-                | false -> -1 + inner (count+1)
-            inner sq  
+                | true -> stkCnt
+                | false -> inner (count+1) (stkCnt - 1)
+            inner sq  0
 
         myfun 12 |> should equal
