@@ -30,4 +30,4 @@ module ``05: To iterate is human; to recurse, divine`` =
                 | false -> inner (count+1) (stkCnt - 1)
             inner sq  0
 
-        myfun 12 |> should equal
+        myfun 12 |> should equal -429981552
