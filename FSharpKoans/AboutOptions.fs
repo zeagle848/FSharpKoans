@@ -92,10 +92,10 @@ module ``11: Exploring types, options, and results`` =
         let f n m =
             match n<0.0, m=0.0 with
             | true, _ -> Error NegativeNumberSupplied
-            | _, true -> __
+            | _, true -> Error DivisionByZero
             | _ ->
                 // 'sqrt' is the square-root function
-                __ (sqrt n / m)
-        f -6.0 2.5 |> shouldEqual __
+                Ok (sqrt n / m)
+        f -6.0 2.5 |> shouldEqual (Error NegativeNumberSupplied)
         f 144.0 2.0 |> shouldEqual (Ok 6.0)
         f 7.3 0.0 |> shouldEqual (Error DivisionByZero)
