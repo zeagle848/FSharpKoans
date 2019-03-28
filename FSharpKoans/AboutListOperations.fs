@@ -29,7 +29,11 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     [<Test>]
     let ``01 Finding the length of a list, the hard way`` () =
         let length (xs : 'a list) : int =
-            __ // write a function to find the length of a list
+            let rec count list acc =
+                match list with
+                |[]-> acc
+                |_::a -> count a (acc + 1) // write a function to find the length of a list
+            count xs 0 
         length [9;8;7] |> should equal 3
         length [] |> should equal 0
         length ["Le Comte de Monte-Cristo"] |> should equal 1
@@ -38,7 +42,7 @@ module ``14: List operations are so easy, you could make them yourself!`` =
     // Hint: https://msdn.microsoft.com/en-us/library/ee340354.aspx
     [<Test>]
     let ``02 Finding the length of a list, the easy way`` () =
-        __ [9;8;5;8;45] |> should equal 5
+        List.length [9;8;5;8;45] |> should equal 5
 
     [<Test>]
     let ``03 Reversing a list, the hard way`` () =
